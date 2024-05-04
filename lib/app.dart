@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/paginas/dinoscreen.dart';
-import 'package:flutter_application_3/paginas/dinostatus.dart';
-import 'package:flutter_application_3/paginas/login.dart';
+import 'package:get/get.dart';
+import 'login/login.view.dart';
+import 'widgets/login.bindings.dart';
+
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      initialBinding: LoginBindings(),
+      debugShowCheckedModeBanner: false,
       title: 'FeedIT',
-      home: const Login(),
-      routes: {
-        '/home': (context) => const Login(),
-        '/second': (context) => const SecondPage(),
-      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const LoginView(),
+
     );
   }
 }
