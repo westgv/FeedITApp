@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/constants/colors.dart';
 
 import '../../styles/styles.dart';
 
@@ -17,7 +18,7 @@ class HeaderJogo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(onPressed: () {}, 
-                  icon: const Icon(Icons.menu),
+                  icon: const Icon(Icons.menu, color: CustomColor.scaffoldBg, ),
                   ),
                   
                   const Icon(Icons.star),

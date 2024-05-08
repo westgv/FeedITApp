@@ -10,13 +10,6 @@ BoxDecoration kHeaderDecoration = BoxDecoration(
 
   // ),
   color: Colors.transparent,
-  boxShadow: const [
-    BoxShadow(
-      color: Color.fromARGB(255, 78, 82, 102),
-      blurRadius: 2,
-      blurStyle: BlurStyle.solid,
-    ),
-  ],
   borderRadius: BorderRadius.circular(100),
 );
 

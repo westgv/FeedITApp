@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/paginas/dinoscreen.dart';
+
 import 'package:get/get.dart';
 import 'login/login.view.dart';
 import 'widgets/login.bindings.dart';

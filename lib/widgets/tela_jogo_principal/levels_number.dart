@@ -19,6 +19,7 @@ class LevelNumber extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
+                      fontWeight: FontWeight.w500
                     ),
                     textAlign: TextAlign.start,
                     ),
@@ -26,6 +27,7 @@ class LevelNumber extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
+                      fontWeight: FontWeight.w500
                     ),
                     textAlign: TextAlign.end,
                     ),

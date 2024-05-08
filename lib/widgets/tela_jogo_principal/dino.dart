@@ -11,7 +11,6 @@ class DinoImage extends StatelessWidget {
           image: AssetImage('assets/dinossauro_verde.png'),
         ),
       ),
-      width: 200,
       height: 250,
     );
   }
