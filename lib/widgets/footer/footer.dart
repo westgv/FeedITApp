@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
-import 'package:footer/footer_view.dart';
+
 import 'package:flutter_application_3/constants/colors.dart';
 
 class Footer extends StatelessWidget {
@@ -8,13 +7,10 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
-    final screenHeight = screenSize.height;
     return BottomNavigationBar(
       selectedItemColor: 
       CustomColor.yellowPrimary,
-      unselectedLabelStyle: TextStyle(
+      unselectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.w500,
       ),
       backgroundColor: Colors.red,

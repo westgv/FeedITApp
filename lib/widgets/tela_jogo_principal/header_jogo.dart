@@ -21,7 +21,7 @@ class HeaderJogo extends StatelessWidget {
                   icon: const Icon(Icons.menu, color: CustomColor.scaffoldBg, ),
                   ),
                   
-                  const Icon(Icons.star),
+                  Image.asset('assets/sao_camilo.png'),
                 ],
               ),
             ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/paginas/dinoscreen.dart';
 import 'package:get/get.dart';
 
-import '../paginas/home.view.dart';
+
 
 class LoginController extends GetxController {
   TextEditingController emailInput = TextEditingController();
@@ -38,7 +39,7 @@ class LoginController extends GetxController {
     }
   }
   void login(){
-    Get.to(HomeView());
+    Get.to(DinoScreen());
   }
   void printError(String error){
     print(error);

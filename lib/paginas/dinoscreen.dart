@@ -11,19 +11,11 @@ import 'package:flutter_application_3/widgets/tela_jogo_principal/nickname.dart'
 import '../constants/colors.dart';
 import '../styles/styles.dart';
 import '../widgets/footer/footer.dart';
-import 'new_page.dart';
 
-class DinoScreen extends StatefulWidget {
+
+class DinoScreen extends StatelessWidget {
   
   const DinoScreen({super.key});
-
-  @override
-  State<DinoScreen> createState() => _DinoScreenState();
-  
-}
-
-class _DinoScreenState extends State<DinoScreen> {
-  
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +53,8 @@ class _DinoScreenState extends State<DinoScreen> {
             height: 0,
           ),
           // LEVEL BAR NUMBER
-          const LevelNumber(),
-          const SizedBox(height: 10,),
+           LevelNumber(),
+           SizedBox(height: 10,),
           
         ],
       ),
