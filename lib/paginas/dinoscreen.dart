@@ -13,55 +13,70 @@ import '../styles/styles.dart';
 import '../widgets/footer/footer.dart';
 
 
-class DinoScreen extends StatelessWidget {
+class DinoScreen extends StatefulWidget {
   
   const DinoScreen({super.key});
 
+  @override
+  State<DinoScreen> createState() => _DinoScreenState();
+}
+
+class _DinoScreenState extends State<DinoScreen> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
-    return Scaffold(
-        bottomNavigationBar: const Footer(),
-
-        body: Container(
+    return LayoutBuilder(
+      builder: (context, contraints) {
+        return Scaffold(
+          key: scaffoldKey,
+            bottomNavigationBar: const Footer(),
+        
+            body: Container(
+              
+              width: screenWidth,
+              height: screenHeight,
+          decoration: gradientBg,
+          child:  Column(
+            children: [
+              // HEADER - MENU/SAO_CAMILO LOGO
+               HeaderJogo(
+                onMenuTap: () {
+                  scaffoldKey.currentState?.openDrawer();
+                },
+               ),
+               const SizedBox(
+                height: 30,
+              ),
+              // NICKNAME FIELD
+               const NickNameField(),
+               const SizedBox(
+                height: 70,
+              ),
+              // DINOSSAUR IMAGE
+               const DinoImage(),
+               const SizedBox(
+                height: 45,
+              ),
+              // LEVEL BAR
+               const LevelBarHome(),
+               const SizedBox(
+                height: 0,
+              ),
+              // LEVEL BAR NUMBER
+               const LevelNumber(),
+               const SizedBox(height: 10,),
+              
+            ],
+          ),
           
-          width: screenWidth,
-          height: screenHeight,
-      decoration: gradientBg,
-      child: const Column(
-        children: [
-          // HEADER - MENU/SAO_CAMILO LOGO
-           HeaderJogo(),
-           SizedBox(
-            height: 30,
-          ),
-          // NICKNAME FIELD
-           NickNameField(),
-           SizedBox(
-            height: 70,
-          ),
-          // DINOSSAUR IMAGE
-           DinoImage(),
-           SizedBox(
-            height: 45,
-          ),
-          // LEVEL BAR
-           LevelBarHome(),
-           SizedBox(
-            height: 0,
-          ),
-          // LEVEL BAR NUMBER
-           LevelNumber(),
-           SizedBox(height: 10,),
-          
-        ],
-      ),
-      
-    ),
-    
-    
+        ),
+        
+        
+        );
+      }
     );
     
   }

@@ -13,7 +13,7 @@ class Footer extends StatelessWidget {
       unselectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.w500,
       ),
-      backgroundColor: Colors.red,
+      backgroundColor: CustomColor.scaffoldBg,
 				currentIndex: 0,
         items: const [
           BottomNavigationBarItem(
