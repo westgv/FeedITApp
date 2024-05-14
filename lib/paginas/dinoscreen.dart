@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/styles/gradient_bg.dart';
+import 'package:flutter_application_3/widgets/drawer_mobile.dart';
 
 import 'package:flutter_application_3/widgets/tela_jogo_principal/dino.dart';
 import 'package:flutter_application_3/widgets/tela_jogo_principal/header_jogo.dart';
@@ -33,7 +34,7 @@ class _DinoScreenState extends State<DinoScreen> {
         return Scaffold(
           key: scaffoldKey,
             bottomNavigationBar: const Footer(),
-        
+          drawer: const DrawerMobile(),
             body: Container(
               
               width: screenWidth,
