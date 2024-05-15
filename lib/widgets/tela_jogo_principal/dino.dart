@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
+import '../../paginas/status.dart';
+
 class DinoImage extends StatelessWidget {
   const DinoImage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/dinossauro_verde.png'),
-        ),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Status()),
+        );
+      },
+      child: Hero(
+        tag: 'dino' ,
+        child: Image.asset('assets/dinossauro_verde.png'),
+        transitionOnUserGestures: true,
+        
       ),
-      height: 250,
     );
   }
 }

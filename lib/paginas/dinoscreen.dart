@@ -14,6 +14,7 @@ import '../styles/styles.dart';
 import '../widgets/footer/footer.dart';
 
 
+
 class DinoScreen extends StatefulWidget {
   
   const DinoScreen({super.key});

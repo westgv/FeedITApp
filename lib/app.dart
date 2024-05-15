@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/paginas/dinoscreen.dart';
 
 
+
 import 'package:get/get.dart';
 
 import 'widgets/login.bindings.dart';
@@ -17,7 +18,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FeedIT',
       theme: ThemeData.dark(),
-      home: const DinoScreen(),
+      home:  DinoScreen(),
 
     );
   }

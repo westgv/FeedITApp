@@ -5,13 +5,10 @@ class DinoStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/dinossauro_verde.png'),
-          ),
-        ),
-        height: 150,
+    return  Hero(
+          tag: 'dinostatus',
+          child: Image.asset('assets/dinossauro_verde.png', scale: 2,)
+          
             );
   }
 }

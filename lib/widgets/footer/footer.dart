@@ -4,19 +4,27 @@ import 'package:flutter_application_3/constants/colors.dart';
 
 import '../../paginas/status.dart';
 
-class Footer extends StatelessWidget {
+class Footer extends StatefulWidget {
   const Footer({super.key});
 
   @override
+  State<Footer> createState() => _FooterState();
+  
+}
+
+class _FooterState extends State<Footer> {
+  int _currentIndex = 0;
+
+  
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      selectedItemColor: 
-      CustomColor.yellowPrimary,
+      currentIndex: _currentIndex, 
       unselectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.w500,
       ),
       backgroundColor: CustomColor.scaffoldBg,
-				currentIndex: 0,
+				
         items: [
             BottomNavigationBarItem(
               icon: IconButton(
