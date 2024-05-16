@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1087794398457",
+    "firebase_url": "https://feedit-53d65-default-rtdb.firebaseio.com",
+    "project_id": "feedit-53d65",
+    "storage_bucket": "feedit-53d65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087794398457:android:bd7d09166a604df1c80e28",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3ipqbOxYDc6ZPTVRS5EkPkcIyH7woCoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

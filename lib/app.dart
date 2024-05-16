@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/paginas/dinoscreen.dart';
+import 'package:flutter_application_3/login/login.dart';
 
 
 
 import 'package:get/get.dart';
 
-import 'widgets/login.bindings.dart';
+
 
 
 class App extends StatelessWidget {
@@ -14,11 +15,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: LoginBindings(),
+      
       debugShowCheckedModeBanner: false,
       title: 'FeedIT',
       theme: ThemeData.dark(),
-      home:  DinoScreen(),
+      home:  LoginPage(),
 
     );
   }

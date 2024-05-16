@@ -36,45 +36,54 @@ class _DinoScreenState extends State<DinoScreen> {
           key: scaffoldKey,
             bottomNavigationBar: const Footer(),
           drawer: const DrawerMobile(),
-            body: Container(
-              
-              width: screenWidth,
-              height: screenHeight,
-          decoration: gradientBg,
-          child:  Column(
-            children: [
-              // HEADER - MENU/SAO_CAMILO LOGO
-               HeaderJogo(
-                onMenuTap: () {
-                  scaffoldKey.currentState?.openDrawer();
-                },
-               ),
-               const SizedBox(
-                height: 30,
+            body: Stack(
+              children: [ 
+                Positioned.fill(
+                child: Container(
+                  width: screenWidth,
+                  height: screenHeight,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(image: AssetImage('background_forest.png'),
+                    fit: BoxFit.cover)
+                  ),
+                  ),
               ),
-              // NICKNAME FIELD
-               const NickNameField(),
-               const SizedBox(
-                height: 70,
-              ),
-              // DINOSSAUR IMAGE
-               const DinoImage(),
-               const SizedBox(
-                height: 45,
-              ),
-              // LEVEL BAR
-               const LevelBarHome(),
-               const SizedBox(
-                height: 0,
-              ),
-              // LEVEL BAR NUMBER
-               const LevelNumber(),
-               const SizedBox(height: 10,),
-              
-            ],
-          ),
-          
-        ),
+              Column(
+              children: [
+                // HEADER - MENU/SAO_CAMILO LOGO
+                 HeaderJogo(
+                  onMenuTap: () {
+                    scaffoldKey.currentState?.openDrawer();
+                  },
+                 ),
+                 const SizedBox(
+                  height: 30,
+                ),
+                // NICKNAME FIELD
+                 const NickNameField(),
+                 const SizedBox(
+                  height: 70,
+                ),
+                // DINOSSAUR IMAGE
+                 const DinoImage(),
+                 const SizedBox(
+                  height: 45,
+                ),
+                // LEVEL BAR
+                 const LevelBarHome(),
+                 const SizedBox(
+                  height: 0,
+                ),
+                // LEVEL BAR NUMBER
+                 const LevelNumber(),
+                 const SizedBox(height: 10,),
+                
+              ],
+                        ),
+                        
+                      
+           ],
+            ),
         
         
         );
