@@ -14,6 +14,8 @@ class RegisterPage extends StatelessWidget {
     } catch(e) {
       print('Error: $e');
     }
+
+    Navigator.of(context).pop();
   }
 
 
@@ -44,7 +46,7 @@ class RegisterPage extends StatelessWidget {
             ),
             const SizedBox(height: 16,),
             ElevatedButton(
-              onPressed: () => _registerUser(context), child: const Text('Register')
+              onPressed: () => _registerUser(context) , child: const Text('Register')
               ),
             const SizedBox(height: 16,),
             TextButton(onPressed: () {

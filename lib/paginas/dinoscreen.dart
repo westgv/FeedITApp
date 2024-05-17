@@ -57,7 +57,7 @@ class _DinoScreenState extends State<DinoScreen> {
                   },
                  ),
                  const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 // NICKNAME FIELD
                  const NickNameField(),
@@ -67,7 +67,7 @@ class _DinoScreenState extends State<DinoScreen> {
                 // DINOSSAUR IMAGE
                  const DinoImage(),
                  const SizedBox(
-                  height: 45,
+                  height: 60,
                 ),
                 // LEVEL BAR
                  const LevelBarHome(),

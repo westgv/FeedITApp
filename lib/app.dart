@@ -19,7 +19,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FeedIT',
       theme: ThemeData.dark(),
-      home:  RegisterPage(),
+      home:  DinoScreen(),
 
     );
   }
