@@ -19,18 +19,34 @@ class LevelNumber extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
-                      fontWeight: FontWeight.w500
+                      fontWeight: FontWeight.w500,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 3,
+                          color: Color.fromARGB(255, 137, 0, 183)
+                        )
+                      ]
                     ),
                     textAlign: TextAlign.start,
                     ),
                 Text('Lvl 2',
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500
+                      color: Colors.black ,
+                      fontWeight: FontWeight.w500,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 3,
+                          color: Color.fromARGB(255, 137, 0, 183)
+                        )
+                      ]
                     ),
+                    
                     textAlign: TextAlign.end,
                     ),
+                  
               ],
             ),
           );

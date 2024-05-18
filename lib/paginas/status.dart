@@ -76,11 +76,11 @@ class _StatusState extends State<Status> with SingleTickerProviderStateMixin {
                         scaffoldKey.currentState?.openDrawer();
                       },
                      ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 5,),
                     const DinoStatus(),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 5,),
                     const ContaPassos(),
-                    const SizedBox(height: 15,),
+                    const SizedBox(height: 10,),
                     const StatusProgress(),
                   ],
                   

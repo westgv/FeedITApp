@@ -21,7 +21,7 @@ class _StatusProgressState extends State<StatusProgress> {
               border: Border.all(color: Colors.black,style: BorderStyle.solid),
               borderRadius: BorderRadius.circular(50)
             ),
-            height: 400,
+            height: 350,
             width: 350,
             child:  Padding(
               padding:  EdgeInsets.all(8.0),
@@ -48,7 +48,7 @@ class _StatusProgressState extends State<StatusProgress> {
                             CircularPercentIndicator(
                               animation: true,
                               animationDuration: 2000,
-                              radius: 45.0,
+                              radius: 40.0,
                               lineWidth: 7.0,
                               percent: 0.10,
                               center: const Icon(Icons.flash_on, color: Colors.yellow, size: 50, shadows: [BoxShadow(
@@ -63,65 +63,30 @@ class _StatusProgressState extends State<StatusProgress> {
                             CircularPercentIndicator(
                               animation: true,
                               animationDuration: 2000,
-                              radius: 45.0,
+                              radius: 40.0,
                               lineWidth: 7.0,
                               percent: 0.10,
-                              center: const Icon(Icons.flash_on, color: Colors.yellow, size: 50, shadows: [BoxShadow(
+                              center: const Icon(Icons.fitness_center, color: Colors.black, size: 50, shadows: [BoxShadow(
                                 color: Colors.black,
                                 blurRadius: 5,
                               )],),
                               progressColor: Colors.red,
                             ),
                           ],),
-                          const SizedBox(height: 15,),
+                          const SizedBox(height: 5,),
 
-                          Row(
+                           Row(
+                          
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            // RESISTANCE
-                            CircularPercentIndicator(
-                              animation: true,
-                              animationDuration: 2000,
-                              radius: 45.0,
-                              lineWidth: 7.0,
-                              percent: 0.10,
-                              center: const Icon(Icons.flash_on, color: Colors.yellow, size: 50, shadows: [BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 5,
-                              )],),
-                              progressColor: Colors.red,
-                            ), 
-
-                            const Padding(padding: EdgeInsets.only(right: 15)),
                             // HEALTHY
                             CircularPercentIndicator(
                               animation: true,
                               animationDuration: 2000,
-                              radius: 45.0,
+                              radius: 40.0,
                               lineWidth: 7.0,
                               percent: 0.10,
-                              center: const Icon(Icons.flash_on, color: Colors.yellow, size: 50, shadows: [BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 5,
-                              )],),
-                              progressColor: Colors.red,
-                            ),
-                          ],),
-
-                          const SizedBox(height: 15,),
-
-                          Row(
-                          
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            // HAPINESS
-                            CircularPercentIndicator(
-                              animation: true,
-                              animationDuration: 2000,
-                              radius: 45.0,
-                              lineWidth: 7.0,
-                              percent: 0.10,
-                              center: const Icon(Icons.flash_on, color: Colors.yellow, size: 50, shadows: [BoxShadow(
+                              center: const Icon(Icons.favorite, color: Colors.red, size: 50, shadows: [BoxShadow(
                                 color: Colors.black,
                                 blurRadius: 5,
                               )],),
@@ -130,6 +95,45 @@ class _StatusProgressState extends State<StatusProgress> {
 
                             
                           ],),
+
+                          const SizedBox(height: 5,),
+
+                          Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            // RESISTANCE
+                            CircularPercentIndicator(
+                              animation: true,
+                              animationDuration: 2000,
+                              radius: 40.0,
+                              lineWidth: 7.0,
+                              percent: 0.10,
+                              center: const Icon(Icons.shield, color: Colors.black, size: 50, shadows: [BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 5,
+                              )],),
+                              progressColor: Colors.red,
+                            ), 
+
+                            const Padding(padding: EdgeInsets.only(right: 15)),
+                            // HAPINESS
+                            CircularPercentIndicator(
+                              animation: true,
+                              animationDuration: 2000,
+                              radius: 40.0,
+                              lineWidth: 7.0,
+                              percent: 0.10,
+                              center: const Icon(Icons.sentiment_very_satisfied_outlined, color: Colors.yellow, size: 50, shadows: [BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 5,
+                              )],),
+                              progressColor: Colors.red,
+                            ),
+                          ],),
+
+                          
+
+                         
                       ],
                     ),
                   ),

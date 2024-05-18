@@ -7,7 +7,7 @@ class PassosIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
             right: 50,
-            top: 215,
+            top: 160,
             left: 50,
             child: Image.asset(
             'assets/passos.png',
