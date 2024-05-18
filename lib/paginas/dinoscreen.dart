@@ -23,15 +23,34 @@ class DinoScreen extends StatefulWidget {
   State<DinoScreen> createState() => _DinoScreenState();
 }
 
-class _DinoScreenState extends State<DinoScreen> {
+class _DinoScreenState extends State<DinoScreen> with SingleTickerProviderStateMixin{
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _controller.forward();
+  }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
     return LayoutBuilder(
-      builder: (context, contraints) {
+      builder: (context, contraints) { 
         return Scaffold(
           key: scaffoldKey,
             bottomNavigationBar: const Footer(),

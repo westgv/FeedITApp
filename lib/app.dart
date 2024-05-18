@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/login/register.dart';
+import 'package:flutter_application_3/paginas/camera.dart';
 import 'package:flutter_application_3/paginas/dinoscreen.dart';
 import 'package:flutter_application_3/login/login.dart';
 
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FeedIT',
       theme: ThemeData.dark(),
-      home:  DinoScreen(),
+      home:  CameraPage(),
 
     );
   }

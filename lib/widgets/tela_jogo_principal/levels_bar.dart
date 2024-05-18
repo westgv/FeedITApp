@@ -40,11 +40,12 @@ class _LevelBarHomeState extends State<LevelBarHome> {
       barRadius: Radius.circular(50),
       lineHeight: 15,
       progressColor: Color.fromARGB(255, 137, 0, 183),
-      percent: 0.5,
+      percent: 0.7,
       backgroundColor: CustomColor.scaffoldBg,
       width: 400,
       padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),  
-      
+      animation: true,
+      animationDuration: 2000,
     );
   }
 }
