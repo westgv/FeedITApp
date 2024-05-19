@@ -36,21 +36,33 @@ class _CameraPageState extends State<CameraPage> {
   ];
 
 Widget buildImageSlider() => Container(
-  width: 200,
-  padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
+  width: 400,
+  padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
   child: CarouselSlider.builder(
         carouselController: controller,        
         options: CarouselOptions(
-          height: 50,
+          height: 55,
           enlargeCenterPage: true,
+          
+          viewportFraction: 0.2,
           onPageChanged: (index, reason) => 
           setState(() => activeIndex = index),
         ),
         itemCount: urlImages.length,
         itemBuilder: (context, index, realIndex) {
           final urlImage = urlImages[index];
-      
-          return buildImage(urlImage, index);
+          final isActive = index == activeIndex;
+          final double scale = isActive? 1.0 : 0.9;
+
+          return GestureDetector(
+            onTap: () {
+              controller.animateToPage(index);
+            },
+            child: Transform.scale(
+              scale: scale,
+              child: buildImage(urlImage, index),
+            ),
+          );
         },
       ),
 );
@@ -58,10 +70,11 @@ Widget buildImageSlider() => Container(
 Widget buildImage(String urlImage, int index) => Container(
     
     color: Colors.transparent,
-    width: 50,
+    
     child: Image.asset
     (urlImage,
-    fit: BoxFit.cover,),
+    fit: BoxFit.cover,
+    ),
   );
 
 Widget buildIndicator() => AnimatedSmoothIndicator(
@@ -89,25 +102,24 @@ Widget buildIndicator() => AnimatedSmoothIndicator(
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          IconButton(
-            onPressed: previous,
-             icon: const Icon(Icons.arrow_back)),
-          SizedBox(width: 15,),
+          // IconButton(
+          //   onPressed: previous,
+          //    icon: const Icon(Icons.arrow_back)),
+          // SizedBox(width: 15,),
           buildImageSlider(),
-          SizedBox(width: 15,),
-          IconButton(
-            onPressed: next,
-             icon: const Icon(Icons.arrow_forward)),
+          // SizedBox(width: 15,),
+          // IconButton(
+          //   onPressed: next,
+          //    icon: const Icon(Icons.arrow_forward)),
         ],
       ),
-      
-
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white
+          color: Colors.white,
         ),
-        
       ),
+
+      
 
 
 

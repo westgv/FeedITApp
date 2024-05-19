@@ -20,7 +20,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FeedIT',
       theme: ThemeData.dark(),
-      home:  LoginPage(),
+      home:  CameraPage(),
 
     );
   }
