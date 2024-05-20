@@ -13,6 +13,7 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends State<CameraPage> {
   int activeIndex = 0;
+  
   final controller = CarouselController();
   final urlImages = [
     //Cereais index 0
@@ -87,6 +88,9 @@ Widget buildIndicator() => AnimatedSmoothIndicator(
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
     return Scaffold(
       appBar: AppBar(
         leading:  IconButton(onPressed: () {
