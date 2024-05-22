@@ -6,6 +6,7 @@ import 'app.dart';
 
 
 Future<void> main() async {
+  Gemini.init(apiKey: GEMINI_API_KEY);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
