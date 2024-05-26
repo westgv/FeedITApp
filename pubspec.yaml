@@ -45,7 +45,8 @@ dependencies:
   smooth_page_indicator: ^0.3.0-nullsafety.0
   flutter_gemini: ^2.0.3
   image_picker: ^1.1.1
-  google_generative_ai: ^0.4.0
+  google_generative_ai: ^0.4.0 # Para selecionar imagens
+
 
 
 dev_dependencies:
