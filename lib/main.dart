@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/firebase_options.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image';
+import 'package:image_picker/image_picker.dart';
 import 'app.dart';
 
 
