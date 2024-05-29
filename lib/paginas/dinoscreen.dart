@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/styles/gradient_bg.dart';
+
 import 'package:flutter_application_3/widgets/drawer_mobile.dart';
 
 import 'package:flutter_application_3/widgets/tela_jogo_principal/dino.dart';
@@ -9,8 +9,7 @@ import 'package:flutter_application_3/widgets/tela_jogo_principal/levels_bar.dar
 import 'package:flutter_application_3/widgets/tela_jogo_principal/levels_number.dart';
 import 'package:flutter_application_3/widgets/tela_jogo_principal/nickname.dart';
 
-import '../constants/colors.dart';
-import '../styles/styles.dart';
+
 import '../widgets/footer/footer.dart';
 
 

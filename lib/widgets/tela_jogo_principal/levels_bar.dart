@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/constants/colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../styles/level_home.dart';
 
 class LevelBarHome extends StatefulWidget {
   const LevelBarHome({super.key});
@@ -37,9 +36,9 @@ class _LevelBarHomeState extends State<LevelBarHome> {
   @override
   Widget build(BuildContext context) {
     return LinearPercentIndicator(
-      barRadius: Radius.circular(50),
+      barRadius: const Radius.circular(50),
       lineHeight: 15,
-      progressColor: Color.fromARGB(255, 137, 0, 183),
+      progressColor: const Color.fromARGB(255, 137, 0, 183),
       percent: 0.7,
       backgroundColor: CustomColor.scaffoldBg,
       width: 400,

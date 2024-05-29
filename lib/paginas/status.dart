@@ -11,7 +11,6 @@ import 'package:flutter_application_3/widgets/status_screen/passos.dart';
 import 'package:flutter_application_3/widgets/status_screen/passos_icon.dart';
 import 'package:flutter_application_3/widgets/status_screen/status_progress.dart';
 
-import '../widgets/footer/footer.dart';
 
 import '../widgets/tela_jogo_principal/header_jogo.dart';
 

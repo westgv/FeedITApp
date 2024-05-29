@@ -49,7 +49,7 @@ class _CameraPageState extends State<CameraPage> {
 
 Widget buildImageSlider() => Container(
   width: 400,
-  padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
   child: CarouselSlider.builder(
         carouselController: controller,        
         options: CarouselOptions(
@@ -99,9 +99,7 @@ Widget buildIndicator() => AnimatedSmoothIndicator(
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
-    final screenHeight = screenSize.height;
+   
     return Scaffold(
       
       appBar: AppBar(
