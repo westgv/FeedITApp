@@ -31,6 +31,7 @@ dependencies:
   percent_indicator: ^4.0.1
   flutter:
     sdk: flutter
+  http: ^1.2.1
   footer:
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,6 +47,7 @@ dependencies:
   flutter_gemini: ^2.0.3
   image_picker: ^1.1.1
   google_generative_ai: ^0.4.0
+  dash_chat_2: ^0.0.20
 
 
 dev_dependencies:

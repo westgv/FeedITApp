@@ -1,6 +1,7 @@
 //Depois mudar o local da pasta ou mudar o nome do arquivo
 import 'dart:io';
 
+import 'package:flutter_application_3/constants/const.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 void main() async {
@@ -11,7 +12,7 @@ void main() async {
     exit(1);
   }
   // For text-and-image input (multimodal), use the gemini-pro-vision model
-  final model = GenerativeModel(model: 'gemini-pro-vision', apiKey: AIzaSyARlwWH_xoKl2SanGiiJWGBL9MMvb6q2ik);
+  final model = GenerativeModel(model: 'gemini-pro-vision', apiKey: GEMINI_API_KEY);
   final (firstImage, secondImage) = await (
     File('image0.jpg').readAsBytes(),
     File('image1.jpg').readAsBytes()

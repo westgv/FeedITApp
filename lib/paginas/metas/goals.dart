@@ -33,8 +33,8 @@ class _GoalsPageState extends State<GoalsPage> {
                 Row(
                   children: [
                     // utilizar uma lista com metas e uma loop de repeticao conforme a necessidade das metas.
-                    const Text("Uma meta que o medico disse"),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.check, color: Colors.green,)),
+                    const Text("Puxar metas de alimentação Banco de Dados"),
+                    
 
                   ],
                 )
