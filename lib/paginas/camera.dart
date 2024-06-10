@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -158,7 +158,9 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 
-  void _sendMessage(ChatMessage chatMessage) {
+  
+
+   void _sendMessage(ChatMessage chatMessage) {
     setState(() {
       messages = [chatMessage, ...messages];
     });
@@ -202,12 +204,12 @@ class _CameraPageState extends State<CameraPage> {
       print(e);
     }
   }
-
+  
   void _sendMediaMessage() async {
     ImagePicker picker = ImagePicker();
     XFile? file = await picker.pickImage(source: ImageSource.gallery);
     if (file != null) {
-      
+      Uint8List imageBytes = await file.readAsBytes();
       ChatMessage chatMessage = ChatMessage(
           user: currentUser,
           createdAt: DateTime.now(),
@@ -215,8 +217,8 @@ class _CameraPageState extends State<CameraPage> {
               "Isso é um alimento? ",
           medias: [
             ChatMedia(
-                url: file.path,
-                 fileName: "",
+                url: base64Encode(imageBytes),
+                 fileName: file.name,
                   type: MediaType.image)
           ]);
 

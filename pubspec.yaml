@@ -43,7 +43,7 @@ dependencies:
   cloud_firestore: ^4.8.0
   carousel_slider: ^4.2.1
   smooth_page_indicator: ^1.1.0
-  flutter_gemini: ^2.0.3
+  flutter_gemini: ^2.0.4
   image_picker: ^1.1.1
   google_generative_ai: ^0.4.0
   dash_chat_2: ^0.0.20

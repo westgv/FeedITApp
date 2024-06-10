@@ -8,6 +8,8 @@ import 'app.dart';
 import 'constants/const.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
+
+
 Future<void> main() async {
   Gemini.init(apiKey: GEMINI_API_KEY);
   WidgetsFlutterBinding.ensureInitialized();
