@@ -8,6 +8,11 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+
+
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
@@ -18,13 +23,17 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends State<CameraPage> {
   final Gemini gemini = Gemini.instance;
-
+  String infoText = '';
   List<ChatMessage> messages = [];
-
+  String categoriaIndex = '';
   int activeIndex = 0;
   ChatUser currentUser = ChatUser(id: "0", firstName: "User");
   ChatUser geminiUser = ChatUser(
       id: "1", firstName: "Gemini", profileImage: "assets/sao_camilo.png");
+
+  final DatabaseReference _energyRef =
+    FirebaseDatabase.instance.ref().child('energy');
+
 
   final controller = CarouselController();
   final urlImages = [
@@ -47,6 +56,20 @@ class _CameraPageState extends State<CameraPage> {
     //Frutas index 8
     'assets/frutas.png',
   ];
+  final categoriaAlimento = [
+    'cereais',
+    'leite e derivados',
+    'doces e guloseimas',
+    'massa',
+    'legume',
+    'leguminosas',
+    'pão',
+    'proteina',
+    'fruta',
+  ];
+
+  
+  
 
   Widget buildImageSlider() => Container(
         width: 250,
@@ -58,7 +81,10 @@ class _CameraPageState extends State<CameraPage> {
             enlargeCenterPage: true,
             viewportFraction: 0.2,
             onPageChanged: (index, reason) =>
-                setState(() => activeIndex = index),
+                setState(() {
+                  activeIndex = index;
+                  categoriaIndex = categoriaAlimento[activeIndex];
+                }),
           ),
           itemCount: urlImages.length,
           itemBuilder: (context, index, realIndex) {
@@ -175,9 +201,10 @@ class _CameraPageState extends State<CameraPage> {
       )
           .listen((event) {
         ChatMessage? lastMessage = messages.firstOrNull;
+        String response = '';
         if (lastMessage != null && lastMessage.user == geminiUser) {
           lastMessage = messages.removeAt(0);
-          String response = event.content?.parts?.fold(
+          response = event.content?.parts?.fold(
                   "", (previous, current) => "$previous ${current.text}") ??
               "";
           lastMessage.text += response;
@@ -185,7 +212,7 @@ class _CameraPageState extends State<CameraPage> {
             messages = [lastMessage!, ...messages];
           });
         } else {
-          String response = event.content?.parts?.fold(
+          response = event.content?.parts?.fold(
                   "", (previous, current) => "$previous ${current.text}") ??
               "";
           ChatMessage message = ChatMessage(
@@ -197,6 +224,7 @@ class _CameraPageState extends State<CameraPage> {
             messages = [message, ...messages];
           });
         }
+        _analyzeResponse(response);
       });
     } catch (e) {
       print(e);
@@ -211,7 +239,7 @@ class _CameraPageState extends State<CameraPage> {
         Uint8List imageBytes = await file.readAsBytes();
         String base64Image = base64Encode(imageBytes);
         // Adicionando a pergunta fixa
-        String question = "Isso é uma fruta?";
+        String question = "Isso é um(a) $categoriaIndex ?";
         ChatMessage chatMessage = ChatMessage(
           user: currentUser,
           createdAt: DateTime.now(),
@@ -230,5 +258,54 @@ class _CameraPageState extends State<CameraPage> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void _analyzeResponse(String response) {
+    if (response.contains("Não")) {
+      showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Aviso"),
+          content: Text("Esse alimento não se enquadra em $categoriaIndex"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  else{
+    switch (activeIndex){
+      case 0:
+         _energyRef.update({
+            'energyPercent': ServerValue.increment(5),
+         });
+      break;
+      case 1:
+      break;
+      case 2:
+      break;
+      case 3:
+      break;
+      case 4:
+      break;
+      case 5:
+      break;
+      case 6:
+      break;
+      case 7:
+      break;
+      case 8:
+      break;
+      default:
+      break;
+    }
+  }
   }
 }

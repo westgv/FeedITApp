@@ -47,6 +47,7 @@ dependencies:
   image_picker: ^1.1.1
   google_generative_ai: ^0.4.0
   dash_chat_2: ^0.0.20
+  firebase_database: ^10.5.7
 
   
 
