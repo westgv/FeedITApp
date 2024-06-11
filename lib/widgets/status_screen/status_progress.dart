@@ -1,5 +1,11 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:flutter_application_3/firebase/firebase_class.dart';
+
+
+
 
 class StatusProgress extends StatefulWidget {
   const StatusProgress({super.key});
@@ -9,9 +15,40 @@ class StatusProgress extends StatefulWidget {
 }
 
 class _StatusProgressState extends State<StatusProgress> {
-  double energyValue = 0.0;
-  double strengthValue = 0.0;
-  double healthyValue = 0.0;
+double energyValue = 0.0;
+
+
+void _getEnergyValue() async {
+  // Acessa a coleção de usuários no Firestore e obtém o documento do usuário atual
+  DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+      .collection('users')
+      .doc('ID_DO_USUARIO') // Substitua 'ID_DO_USUARIO' pelo ID do usuário atual
+      .get();
+
+  // Verifica se o documento existe e se contém o campo 'energyPercent'
+  if (userSnapshot.exists && userSnapshot.data() != null) {
+    Map<String, dynamic>? userData = userSnapshot.data() as Map<String, dynamic>?; // Convertendo para Map<String, dynamic>?
+    if (userData != null && userData.containsKey('energyPercent')) {
+      // Obtém o valor de 'energyPercent' do documento
+      double energyPercent = userData['energyPercent'];
+
+      // Atualiza o estado da variável energyValue com o valor obtido
+      setState(() {
+        energyValue = energyPercent;
+      });
+    } else {
+      // Se o documento não contiver o campo 'energyPercent', mostra uma mensagem de erro
+      print('Erro: Campo energyPercent não encontrado no documento do usuário.');
+    }
+  } else {
+    // Se o documento não existir, mostra uma mensagem de erro
+    print('Erro: Documento do usuário não encontrado.');
+  }
+}
+
+
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +87,7 @@ class _StatusProgressState extends State<StatusProgress> {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: 0.10,
+                          percent: energyValue / 100,
                           center: const Icon(
                             Icons.flash_on,
                             color: Colors.yellow,
