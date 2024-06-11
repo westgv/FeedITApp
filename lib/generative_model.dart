@@ -6,34 +6,66 @@ class GenerativeModelService {
 
   GenerativeModelService._(this.model);
 
-  //requisição de serviço 
   static Future<GenerativeModelService> create() async {
     final apiKey = Platform.environment['API_KEY'];
     if (apiKey == null) {
       throw Exception('No \$API_KEY environment variable');
     }
 
-    final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: "AIzaSyARlwWH_xoKl2SanGiiJWGBL9MMvb6q2ik");
+    final model = GenerativeModel(
+        model: 'gemini-1.5-flash',
+        apiKey: apiKey);
     return GenerativeModelService._(model);
   }
 
-  //função que permite gerar texto com baseando em uma imagem ou texto, mas será necessário conectar com a imagem da câmera 
-  Future<String> generateTextFromImage(File image, String promptText) async {
+  Future<String> generateTextFromImage(File image) async {
     final imageBytes = await image.readAsBytes();
 
-    final prompt = TextPart(promptText);
-    final imagePart = DataPart('image/jpeg', imageBytes);
+    final imageType = _getImageType(image.path);
+    final prompt = DataPart(imageType, imageBytes);
 
-    final response = await model.generateContent([
-      Content.multi([prompt, imagePart])
-    ]);
+    try {
+      final response = await model.generateContent([
+        Content.single(prompt)
+      ]);
 
-    final generatedText = response.text;
+      final generatedText = response.text;
 
-    if (generatedText != null) {
-      return generatedText;
-    } else {
-      throw Exception('Failed to generate text');
+      if (generatedText != null && generatedText.isNotEmpty) {
+        return generatedText;
+      } else {
+        throw Exception('A resposta gerada está vazia.');
+      }
+    } catch (e) {
+      print('Erro ao gerar texto: $e');
+      throw Exception('Erro ao gerar texto: $e');
+    }
+  }
+
+  String _getImageType(String imagePath) {
+    // Identificar o tipo de imagem com base na extensão do arquivo
+    final extension = imagePath.split('.').last.toLowerCase();
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      // Adicione mais tipos de imagem conforme necessário
+      default:
+        throw Exception('Tipo de imagem não suportado: $extension');
     }
   }
 }
+
+
+
+
+
+
+
+
+
+

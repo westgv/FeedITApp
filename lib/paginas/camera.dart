@@ -160,69 +160,75 @@ class _CameraPageState extends State<CameraPage> {
 
   
 
-   void _sendMessage(ChatMessage chatMessage) {
-    setState(() {
-      messages = [chatMessage, ...messages];
-    });
-    try {
-      String question = chatMessage.text;
-      List<Uint8List>? images;
-      if (chatMessage.medias?.isNotEmpty ?? false) {
-        images = [File(chatMessage.medias!.first.url).readAsBytesSync()];
-      }
-      gemini
-          .streamGenerateContent(
-        question,
-        images: images,
-      )
-          .listen((event) {
-        ChatMessage? lastMessage = messages.firstOrNull;
-        if (lastMessage != null && lastMessage.user == geminiUser) {
-          lastMessage = messages.removeAt(0);
-          String response = event.content?.parts?.fold(
-                  "", (previous, current) => "$previous ${current.text}") ??
-              "";
-          lastMessage.text += response;
-          setState(() {
-            messages = [lastMessage!, ...messages];
-          });
-        } else {
-          String response = event.content?.parts?.fold(
-                  "", (previous, current) => "$previous ${current.text}") ??
-              "";
-          ChatMessage message = ChatMessage(
-            user: geminiUser,
-            createdAt: DateTime.now(),
-            text: response,
-          );
-          setState(() {
-            messages = [message, ...messages];
-          });
-        }
-      });
-    } catch (e) {
-      print(e);
+    void _sendMessage(ChatMessage chatMessage) {
+  setState(() {
+    messages = [chatMessage, ...messages];
+  });
+  try {
+    String question = chatMessage.text ?? '';
+    List<Uint8List>? images;
+    if (chatMessage.medias != null && chatMessage.medias!.isNotEmpty) {
+      images = [base64Decode(chatMessage.medias!.first.url)];
     }
+    gemini
+        .streamGenerateContent(
+          question,
+          images: images,
+        )
+        .listen((event) {
+          ChatMessage? lastMessage = messages.firstOrNull;
+          if (lastMessage != null && lastMessage.user == geminiUser) {
+            lastMessage = messages.removeAt(0);
+            String response = event.content?.parts?.fold(
+                "", (previous, current) => "$previous ${current.text}") ?? "";
+            lastMessage.text += response;
+            setState(() {
+              messages = [lastMessage!, ...messages];
+            });
+          } else {
+            String response = event.content?.parts?.fold(
+                "", (previous, current) => "$previous ${current.text}") ?? "";
+            ChatMessage message = ChatMessage(
+              user: geminiUser,
+              createdAt: DateTime.now(),
+              text: response,
+            );
+            setState(() {
+              messages = [message, ...messages];
+            });
+          }
+        });
+  } catch (e) {
+    print(e);
   }
-  
-  void _sendMediaMessage() async {
-    ImagePicker picker = ImagePicker();
-    XFile? file = await picker.pickImage(source: ImageSource.gallery);
+}
+
+void _sendMediaMessage() async {
+  try {
+    final picker = ImagePicker();
+    final XFile? file = await picker.pickImage(source: ImageSource.gallery);
     if (file != null) {
       Uint8List imageBytes = await file.readAsBytes();
+      String base64Image = base64Encode(imageBytes);
+      // Adicionando a pergunta fixa
+      String question = "Isso é uma fruta?";
       ChatMessage chatMessage = ChatMessage(
-          user: currentUser,
-          createdAt: DateTime.now(),
-          text:
-              "Isso é um alimento? ",
-          medias: [
-            ChatMedia(
-                url: base64Encode(imageBytes),
-                 fileName: file.name,
-                  type: MediaType.image)
-          ]);
+        user: currentUser,
+        createdAt: DateTime.now(),
+        text: question, // Define a pergunta como o texto da mensagem
+        medias: [
+          ChatMedia(
+            url: base64Image,
+            fileName: file.name,
+            type: MediaType.image,
+          )
+        ],
+      );
 
       _sendMessage(chatMessage);
     }
+  } catch (e) {
+    print(e);
   }
+}
 }
