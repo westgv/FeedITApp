@@ -8,47 +8,43 @@ class LevelNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            height: 20.0,
-            width: 400,
-            margin: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-            decoration: kLevels,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Lvl 1',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 3,
-                          color: Color.fromARGB(255, 137, 0, 183)
-                        )
-                      ]
-                    ),
-                    textAlign: TextAlign.start,
-                    ),
-                Text('Lvl 2',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black ,
-                      fontWeight: FontWeight.w500,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 3,
-                          color: Color.fromARGB(255, 137, 0, 183)
-                        )
-                      ]
-                    ),
-                    
-                    textAlign: TextAlign.end,
-                    ),
-                  
-              ],
-            ),
-          );
+      height: 20.0,
+      width: 250,
+      margin: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+      decoration: kLevels,
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Lvl 1',
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                shadows: [
+                  Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 3,
+                      color: Color.fromARGB(255, 137, 0, 183))
+                ]),
+            textAlign: TextAlign.start,
+          ),
+          Text(
+            'Lvl 2',
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                shadows: [
+                  Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 3,
+                      color: Color.fromARGB(255, 137, 0, 183))
+                ]),
+            textAlign: TextAlign.end,
+          ),
+        ],
+      ),
+    );
   }
 }

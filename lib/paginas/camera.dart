@@ -49,7 +49,7 @@ class _CameraPageState extends State<CameraPage> {
   ];
 
   Widget buildImageSlider() => Container(
-        width: 400,
+        width: 250,
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
         child: CarouselSlider.builder(
           carouselController: controller,
@@ -144,7 +144,7 @@ class _CameraPageState extends State<CameraPage> {
           },
           inputDecoration: InputDecoration(
               hintText: "Clique no icone e envie seu alimento",
-              hintStyle: const TextStyle(color: Colors.black),
+              hintStyle: const TextStyle(color: Colors.black, fontSize: 15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -158,77 +158,77 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 
-  
-
-    void _sendMessage(ChatMessage chatMessage) {
-  setState(() {
-    messages = [chatMessage, ...messages];
-  });
-  try {
-    String question = chatMessage.text ?? '';
-    List<Uint8List>? images;
-    if (chatMessage.medias != null && chatMessage.medias!.isNotEmpty) {
-      images = [base64Decode(chatMessage.medias!.first.url)];
+  void _sendMessage(ChatMessage chatMessage) {
+    setState(() {
+      messages = [chatMessage, ...messages];
+    });
+    try {
+      String question = chatMessage.text ?? '';
+      List<Uint8List>? images;
+      if (chatMessage.medias != null && chatMessage.medias!.isNotEmpty) {
+        images = [base64Decode(chatMessage.medias!.first.url)];
+      }
+      gemini
+          .streamGenerateContent(
+        question,
+        images: images,
+      )
+          .listen((event) {
+        ChatMessage? lastMessage = messages.firstOrNull;
+        if (lastMessage != null && lastMessage.user == geminiUser) {
+          lastMessage = messages.removeAt(0);
+          String response = event.content?.parts?.fold(
+                  "", (previous, current) => "$previous ${current.text}") ??
+              "";
+          lastMessage.text += response;
+          setState(() {
+            messages = [lastMessage!, ...messages];
+          });
+        } else {
+          String response = event.content?.parts?.fold(
+                  "", (previous, current) => "$previous ${current.text}") ??
+              "";
+          ChatMessage message = ChatMessage(
+            user: geminiUser,
+            createdAt: DateTime.now(),
+            text: response,
+          );
+          setState(() {
+            messages = [message, ...messages];
+          });
+        }
+      });
+    } catch (e) {
+      print(e);
     }
-    gemini
-        .streamGenerateContent(
-          question,
-          images: images,
-        )
-        .listen((event) {
-          ChatMessage? lastMessage = messages.firstOrNull;
-          if (lastMessage != null && lastMessage.user == geminiUser) {
-            lastMessage = messages.removeAt(0);
-            String response = event.content?.parts?.fold(
-                "", (previous, current) => "$previous ${current.text}") ?? "";
-            lastMessage.text += response;
-            setState(() {
-              messages = [lastMessage!, ...messages];
-            });
-          } else {
-            String response = event.content?.parts?.fold(
-                "", (previous, current) => "$previous ${current.text}") ?? "";
-            ChatMessage message = ChatMessage(
-              user: geminiUser,
-              createdAt: DateTime.now(),
-              text: response,
-            );
-            setState(() {
-              messages = [message, ...messages];
-            });
-          }
-        });
-  } catch (e) {
-    print(e);
   }
-}
 
-void _sendMediaMessage() async {
-  try {
-    final picker = ImagePicker();
-    final XFile? file = await picker.pickImage(source: ImageSource.gallery);
-    if (file != null) {
-      Uint8List imageBytes = await file.readAsBytes();
-      String base64Image = base64Encode(imageBytes);
-      // Adicionando a pergunta fixa
-      String question = "Isso é uma fruta?";
-      ChatMessage chatMessage = ChatMessage(
-        user: currentUser,
-        createdAt: DateTime.now(),
-        text: question, // Define a pergunta como o texto da mensagem
-        medias: [
-          ChatMedia(
-            url: base64Image,
-            fileName: file.name,
-            type: MediaType.image,
-          )
-        ],
-      );
+  void _sendMediaMessage() async {
+    try {
+      final picker = ImagePicker();
+      final XFile? file = await picker.pickImage(source: ImageSource.gallery);
+      if (file != null) {
+        Uint8List imageBytes = await file.readAsBytes();
+        String base64Image = base64Encode(imageBytes);
+        // Adicionando a pergunta fixa
+        String question = "Isso é uma fruta?";
+        ChatMessage chatMessage = ChatMessage(
+          user: currentUser,
+          createdAt: DateTime.now(),
+          text: question, // Define a pergunta como o texto da mensagem
+          medias: [
+            ChatMedia(
+              url: base64Image,
+              fileName: file.name,
+              type: MediaType.image,
+            )
+          ],
+        );
 
-      _sendMessage(chatMessage);
+        _sendMessage(chatMessage);
+      }
+    } catch (e) {
+      print(e);
     }
-  } catch (e) {
-    print(e);
   }
-}
 }

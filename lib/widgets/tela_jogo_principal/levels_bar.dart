@@ -22,8 +22,11 @@ class _LevelBarHomeState extends State<LevelBarHome> {
 
   Future<void> _getProgressValue() async {
     try {
-      DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('progress').doc('yourDocumentId').get();
-      if(snapshot.exists) {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('progress')
+          .doc('yourDocumentId')
+          .get();
+      if (snapshot.exists) {
         setState(() {
           progressValue = snapshot['value'] / 100;
         });
@@ -36,13 +39,14 @@ class _LevelBarHomeState extends State<LevelBarHome> {
   @override
   Widget build(BuildContext context) {
     return LinearPercentIndicator(
+      alignment: MainAxisAlignment.center,
       barRadius: const Radius.circular(50),
       lineHeight: 15,
       progressColor: const Color.fromARGB(255, 137, 0, 183),
       percent: 0.7,
       backgroundColor: CustomColor.scaffoldBg,
-      width: 400,
-      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),  
+      width: 270,
+      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
       animation: true,
       animationDuration: 2000,
     );
