@@ -69,6 +69,8 @@ class _CameraPageState extends State<CameraPage> {
   ];
 
   
+
+  
   
 
   Widget buildImageSlider() => Container(
@@ -280,30 +282,147 @@ class _CameraPageState extends State<CameraPage> {
       },
     );
   }
-  else{
-    switch (activeIndex){
-      case 0:
-         _energyRef.update({
-            'energyPercent': ServerValue.increment(5),
-         });
+  else if (response.contains('Sim')){
+    switch (urlImages[activeIndex]){
+      case 'assets/cereais.png':
+         AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 15 de energia \n + 10 de felicidade \n + 5 de alimentação saudável"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 1:
+      case 'assets/doces.png':
+        AlertDialog(
+            title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+            content: const Text("Você ganhou: \n + 5 felicidade \n + 10 de força \n + 10 de alimentação saudável"),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("Receber"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
       break;
-      case 2:
+      case 'assets/leite_derivados.png':
+        AlertDialog(
+              title: Text(" Cuidado com o excesso de $categoriaIndex "),
+              content: const Text("Você ganhou: \n + 10 felicidade \n + 10 de energia \n - 5 de alimentação saudável \n - 5 de força \n - 5 de resistência"),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text("Receber"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
       break;
-      case 3:
+      case 'assets/massa.png':
+        AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 15 de energia \n + 10 de felicidade \n + 5 de alimentação saudável"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 4:
+      case 'assets/legumes.png':
+        AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 5 de resistência \n + 15 de alimentação saudável"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 5:
+      case 'assets/leguminosas.png':
+        AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 5 de resistência \n + 10 de força \n + 5 de alimentação saudável"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 6:
+      case 'assets/pao.png':
+      AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 15 de energia \n + 10 de felicidade \n + 5 de alimentação saudável"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 7:
+      case 'assets/proteina.png':
+        AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 5 resistência \n + 10 de força \n + 5 de alimentação saudável \n + 5 felicidade"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
-      case 8:
+      case 'assets/frutas.png':
+        AlertDialog(
+          title: Text("Parabéns isso é realmente um(a) $categoriaIndex: "),
+          content: const Text("Você ganhou: \n + 10 de energia \n + 5 de felicidade \n + 10 de alimentação saudável \n + 5 de resistência "),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Receber"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
       default:
+      AlertDialog(
+          title: const Text("Ops..."),
+          content: const Text("Parece que o seu alimento não se enquadrou em nenhuma das categorias"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Tentar Novamente"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       break;
     }
   }

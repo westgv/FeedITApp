@@ -16,6 +16,10 @@ class StatusProgress extends StatefulWidget {
 
 class _StatusProgressState extends State<StatusProgress> {
 double energyValue = 0.0;
+double strengthValue = 0.0;
+double healthyValue = 0.0;
+double staminaValue = 0.0;
+double hapinessValue = 0.0;
 
 
 void _getEnergyValue() async {
@@ -87,7 +91,7 @@ void _getEnergyValue() async {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: energyValue / 100,
+                          percent: energyValue,
                           center: const Icon(
                             Icons.flash_on,
                             color: Colors.yellow,
@@ -109,7 +113,7 @@ void _getEnergyValue() async {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: 0.10,
+                          percent: strengthValue,
                           center: const Icon(
                             Icons.fitness_center,
                             color: Colors.black,
@@ -137,7 +141,7 @@ void _getEnergyValue() async {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: 0.10,
+                          percent: healthyValue,
                           center: const Icon(
                             Icons.favorite,
                             color: Colors.red,
@@ -165,7 +169,7 @@ void _getEnergyValue() async {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: 0.10,
+                          percent: staminaValue,
                           center: const Icon(
                             Icons.shield,
                             color: Colors.black,
@@ -187,7 +191,7 @@ void _getEnergyValue() async {
                           animationDuration: 2000,
                           radius: 35.0,
                           lineWidth: 7.0,
-                          percent: 0.10,
+                          percent: hapinessValue,
                           center: const Icon(
                             Icons.sentiment_very_satisfied_outlined,
                             color: Colors.yellow,
